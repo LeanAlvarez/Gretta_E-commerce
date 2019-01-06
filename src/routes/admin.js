@@ -28,6 +28,21 @@ router.get('/', async (req, res) => {
      res.json({status: 'producto guardado'})
  })
 
+ //Modifico un producto
+ router.put('/:id', async(req, res) => {
+    const { titulo, descripcion, foto, precio, stock } = req.body
+    const NuevoProducto = { titulo, descripcion, foto, precio, stock } 
+    await Productos.findOneAndUpdate(req.param.id, NuevoProducto)
+    res.json({status: 'producto actualizado'})
+ })
+
+
+ //elimino producto
+ router.delete('/:id', async(req, res) => {
+     await Productos.findByIdAndDelete(req.params.id)
+     res.json({status: 'producto eliminado'})
+ })
+
 
 //-->/Rutas Admin<---
 
