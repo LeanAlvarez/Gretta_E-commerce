@@ -3,7 +3,7 @@ const router = express.Router()
 
 
 const Productos = require('../models/productos')
-
+const Usuarios = require('../models/usuarios')
 
 
 //-->Rutas Admin<---
@@ -22,16 +22,16 @@ router.get('/', async (req, res) => {
  
  //agrego un producto nuevo
  router.post('/', async(req, res) => {
-     const { titulo, descripcion, foto, precio, stock } = req.body
-     const producto = new Productos({ titulo, descripcion, foto, precio, stock })
+     const { titulo, categoria, descripcion, foto, precio, stock } = req.body
+     const producto = new Productos({ titulo, categoria, descripcion, foto, precio, stock })
      await producto.save()
      res.json({status: 'producto guardado'})
  })
 
  //Modifico un producto
  router.put('/:id', async(req, res) => {
-    const { titulo, descripcion, foto, precio, stock } = req.body
-    const NuevoProducto = { titulo, descripcion, foto, precio, stock } 
+    const { titulo, categoria, descripcion, foto, precio, stock } = req.body
+    const NuevoProducto = { titulo, categoria, descripcion, foto, precio, stock } 
     await Productos.findOneAndUpdate(req.param.id, NuevoProducto)
     res.json({status: 'producto actualizado'})
  })
