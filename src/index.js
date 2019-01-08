@@ -5,6 +5,8 @@ const app = express()
 
 const { mongoose } = require('./database')
 
+
+
 //settings
 app.set('port', process.env.PORT || 3000)
 
@@ -17,7 +19,6 @@ app.use(express.urlencoded({extended: false}))
 //rutas
 app.use('/shop/productos/',require('./routes/productos'))
 app.use('/shop/admin/',require('./routes/admin'))
-
 //archivos staticos
 app.use(express.static(path.join(__dirname, 'public')))
 

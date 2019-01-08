@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const Productos = require('../models/productos')
-const Usuarios = require('../models/usuarios')
+// const Usuarios = require('../models/usuarios')
 
 //-->Rutas Usuarios<---
 
@@ -12,10 +12,13 @@ router.get('/', async (req, res) => {
    res.json(productos)
 })
 
-router.get('/:id', async(req, res) => {
-    const producto = await Productos.findOne(req.params.id)
+router.get('/:categoria', async(req, res) => {
+    const producto = await Productos.find(req.params)
     res.json(producto)
 })
+
+
+
 
 //-->/Rutas Usuarios<---
 
